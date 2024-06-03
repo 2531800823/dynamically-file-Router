@@ -11,7 +11,7 @@ function App() {
     fetch("/api/files")
       .then((res) => res.json())
       .then((res) => {
-        setCount(res);
+        if (Array.isArray(res)) setCount(res);
       });
   }, []);
 
@@ -47,6 +47,7 @@ function App() {
       <Routes>
         {count.map((item) => {
           const str = item.replace(".tsx", "");
+          console.log("🚀 liu123 ~ str:", str);
 
           const Component = React.lazy(() => import(`./pages/${str}.tsx`));
           console.log(str);
